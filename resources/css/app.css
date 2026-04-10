@@ -1,10 +1,9 @@
 @import 'tailwindcss';
 
-/* Cara paling aman di Tailwind v4 untuk membaca semua file blade di folder views */
+/* Pastikan ini mengarah ke folder views agar class baru terdeteksi */
 @source "../views";
 
 @theme {
-    /* Konfigurasi warna kustom sekolah */
     --color-sekolah-green: #10B981;
     --color-sekolah-green-dark: #047857;
 }

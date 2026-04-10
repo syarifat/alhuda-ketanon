@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_kategori', 100);
             $table->string('slug', 100)->unique();
+            $table->timestamps();
         });
     }
 

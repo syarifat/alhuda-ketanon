@@ -162,7 +162,7 @@
                 <div class="w-1 h-8 bg-green-600 rounded"></div>
                 <h2 class="text-2xl md:text-3xl font-black text-green-950">Berita &amp; Pengumuman</h2>
             </div>
-            <a href="#" class="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-green-600 hover:text-green-800 transition-colors">
+            <a href="{{ route('news.index') }}" class="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-green-600 hover:text-green-800 transition-colors">
                 Semua Berita →
             </a>
         </div>
@@ -222,7 +222,7 @@
             </div>
 
             <div class="mt-8 text-center sm:hidden">
-                <a href="#" class="inline-flex items-center gap-2 text-xs font-bold text-green-600 hover:text-green-800 uppercase tracking-widest transition-colors">
+                <a href="{{ route('news.index') }}" class="inline-flex items-center gap-2 text-xs font-bold text-green-600 hover:text-green-800 uppercase tracking-widest transition-colors">
                     Lihat Semua Berita →
                 </a>
             </div>

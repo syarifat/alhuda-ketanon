@@ -54,4 +54,26 @@ class FrontController extends Controller
 
         return view('frontend.article', compact('profile', 'article'));
     }
+
+    public function newsIndex(Request $request)
+    {
+        $profile = SchoolProfile::first();
+        
+        $query = Article::where('is_published', true);
+        
+        if ($request->has('q') && $request->q != '') {
+            $query->where(function($q) use ($request) {
+                $q->where('title', 'like', '%' . $request->q . '%')
+                  ->orWhere('content', 'like', '%' . $request->q . '%');
+            });
+        }
+        
+        $articles = $query->latest()->paginate(12)->withQueryString();
+        
+        $popularArticles = Article::where('is_published', true)
+                                ->orderBy('views', 'desc')
+                                ->take(5)->get();
+
+        return view('frontend.news', compact('profile', 'articles', 'popularArticles'));
+    }
 }

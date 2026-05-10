@@ -16,6 +16,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::post('/kirim-pesan', [FrontController::class, 'storeMessage'])->name('send.message');
+Route::get('/berita', [FrontController::class, 'newsIndex'])->name('news.index');
 Route::get('/berita/{slug}', [FrontController::class, 'showArticle'])->name('article.show');
 
 Route::middleware('auth')->group(function () {

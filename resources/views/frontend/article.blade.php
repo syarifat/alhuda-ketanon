@@ -229,7 +229,7 @@
                 <nav class="art-breadcrumb">
                     <a href="{{ route('home') }}">Beranda</a>
                     <span>›</span>
-                    <a href="{{ route('home') }}#berita">Berita</a>
+                    <a href="{{ route('news.index') }}">Berita</a>
                     <span>›</span>
                     <span class="text-gray-500 line-clamp-1">{{ Str::limit($article->title, 50) }}</span>
                 </nav>
@@ -287,7 +287,7 @@
 
                 {{-- Tags / footer --}}
                 <div class="art-footer-bar">
-                    <a href="{{ route('home') }}#berita"
+                    <a href="{{ route('news.index') }}"
                        class="inline-flex items-center gap-2 text-sm font-bold text-green-700 hover:text-green-900 border border-green-200 hover:border-green-400 px-4 py-2 rounded-full bg-green-50 hover:bg-green-100 transition-all">
                         ← Kembali ke Berita
                     </a>

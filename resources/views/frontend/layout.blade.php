@@ -230,8 +230,17 @@
                     </div>
                 </div>
             </div>
-            <div class="border-t border-green-800/50 pt-8 text-center text-xs text-green-400/50">
-                &copy; {{ date('Y') }} {{ $profile->name ?? 'Sekolah Kita' }}. All rights reserved. Crafted with ❤️
+            <div class="border-t border-green-800/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-green-400/50">
+                <div>
+                    &copy; {{ date('Y') }} {{ $profile->name ?? 'Sekolah Kita' }}. All rights reserved.
+                </div>
+                <div class="flex items-center gap-2">
+                    <span>Powered by</span>
+                    <a href="https://sat-project.me" target="_blank" class="hover:opacity-80 transition-opacity flex items-center gap-2" title="SAT Project">
+                        <img src="{{ asset('logosatcolor.svg') }}" alt="SAT Project Logo" class="h-4 md:h-5">
+                        <span class="font-bold text-green-300 hover:text-white transition-colors">SAT Project</span>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>

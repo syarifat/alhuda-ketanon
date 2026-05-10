@@ -184,10 +184,13 @@
 
     <!-- ── SIDEBAR ── -->
     <aside id="admin-sidebar">
-        <!-- Brand -->
         <div class="sidebar-brand">
             <div class="sidebar-brand-icon overflow-hidden p-0">
-                <img src="{{ asset('logo.png') }}" alt="Logo" class="w-full h-full object-cover">
+                @php
+                    $appProfile = \App\Models\SchoolProfile::first();
+                    $logoUrl = ($appProfile && $appProfile->logo && Str::contains($appProfile->logo, ['/'])) ? Storage::url($appProfile->logo) : asset($appProfile->logo ?? 'logo.png');
+                @endphp
+                <img src="{{ $logoUrl }}" alt="Logo" class="w-full h-full object-cover">
             </div>
             <div>
                 <div class="sidebar-brand-text">{{ config('app.name') }}</div>

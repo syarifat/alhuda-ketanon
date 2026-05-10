@@ -84,7 +84,11 @@
 
     <div class="login-card">
         <div class="login-logo">
-            <img src="{{ asset('logo.png') }}" alt="Logo Sekolah" class="w-full h-full object-contain p-1">
+            @php
+                $appProfile = \App\Models\SchoolProfile::first();
+                $logoUrl = ($appProfile && $appProfile->logo && Str::contains($appProfile->logo, ['/'])) ? Storage::url($appProfile->logo) : asset($appProfile->logo ?? 'logo.png');
+            @endphp
+            <img src="{{ $logoUrl }}" alt="Logo Sekolah" class="w-full h-full object-contain p-1">
         </div>
         <h1 class="login-title">{{ config('app.name') }}</h1>
         <p class="login-sub">Masuk untuk mengelola konten sekolah</p>

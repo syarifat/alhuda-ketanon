@@ -61,7 +61,10 @@
                     <div class="w-72 h-72 rounded-full" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)"></div>
                     <div class="absolute inset-6 rounded-full" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <img src="{{ asset('logo.png') }}" alt="Logo" class="w-40 h-40 object-contain drop-shadow-2xl">
+                        @php
+                            $logoUrl = ($profile && $profile->logo && Str::contains($profile->logo, ['/'])) ? Storage::url($profile->logo) : asset($profile->logo ?? 'logo.png');
+                        @endphp
+                        <img src="{{ $logoUrl }}" alt="Logo" class="w-40 h-40 object-contain drop-shadow-2xl">
                     </div>
                     <!-- Orbiting dot -->
                     <div class="absolute top-6 right-8 w-4 h-4 rounded-full bg-green-400 shadow-lg shadow-green-400/50"></div>

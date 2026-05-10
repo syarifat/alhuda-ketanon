@@ -336,7 +336,10 @@
                 <div class="widget-card">
                     <div class="widget-title">🏫 Tentang Kami</div>
                     <div class="p-4 text-center">
-                        <img src="{{ asset('logo.png') }}" alt="Logo" class="w-16 h-16 mx-auto mb-3 object-contain">
+                        @php
+                            $logoUrl = ($profile && $profile->logo && Str::contains($profile->logo, ['/'])) ? Storage::url($profile->logo) : asset($profile->logo ?? 'logo.png');
+                        @endphp
+                        <img src="{{ $logoUrl }}" alt="Logo" class="w-16 h-16 mx-auto mb-3 object-contain">
                         <p class="font-black text-sm text-gray-800">{{ config('app.name') }}</p>
                         <a href="{{ route('home') }}"
                            class="mt-3 inline-block text-xs font-bold text-green-700 border border-green-300 px-4 py-1.5 rounded-full hover:bg-green-50 transition-all">

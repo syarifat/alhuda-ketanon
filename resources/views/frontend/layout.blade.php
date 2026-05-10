@@ -212,7 +212,19 @@
                         Kontak Kami
                     </h3>
                     <ul class="text-sm text-green-200/70 space-y-3">
-                        <li class="flex items-start gap-3"><span class="text-green-400 mt-0.5">📍</span>{{ $profile->address ?? '-' }}</li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-400 mt-0.5">📍</span>
+                            <div>
+                                {{ $profile->address ?? '-' }}
+                                @if(isset($profile->maps_link) && $profile->maps_link)
+                                    <div class="mt-1.5">
+                                        <a href="{{ $profile->maps_link }}" target="_blank" class="inline-flex items-center gap-1 text-xs font-bold text-green-400 hover:text-green-300 transition-colors">
+                                            Buka di Peta ↗
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
+                        </li>
                         <li class="flex items-center gap-3"><span class="text-green-400">📞</span>{{ $profile->whatsapp ?? ($profile->phone ?? '-') }}</li>
                         <li class="flex items-center gap-3"><span class="text-green-400">✉️</span>{{ $profile->email ?? '-' }}</li>
                     </ul>

@@ -39,6 +39,33 @@ class GalleryController extends Controller
         return redirect()->route('admin.galleries.index')->with('success', 'Foto galeri berhasil ditambahkan!');
     }
 
+    public function edit(Gallery $gallery)
+    {
+        return view('admin.galleries.edit', compact('gallery'));
+    }
+
+    public function update(Request $request, Gallery $gallery)
+    {
+        $request->validate([
+            'title' => 'required|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:3072',
+            'description' => 'nullable',
+        ]);
+
+        if ($request->hasFile('image')) {
+            if ($gallery->image_path) {
+                Storage::disk('r2')->delete($gallery->image_path);
+            }
+            $gallery->image_path = $request->file('image')->store('galleries', 'r2');
+        }
+
+        $gallery->title = $request->title;
+        $gallery->description = $request->description;
+        $gallery->save();
+
+        return redirect()->route('admin.galleries.index')->with('success', 'Foto galeri berhasil diperbarui!');
+    }
+
     public function destroy(Gallery $gallery)
     {
         if ($gallery->image_path) {

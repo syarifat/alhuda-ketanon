@@ -1,41 +1,53 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Galeri Kegiatan') }}</h2>
-            <a href="{{ route('admin.galleries.create') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-bold shadow">+ Tambah Foto</a>
+        <div class="flex justify-between items-center gap-3">
+            <h2 class="font-black text-green-900 text-xl">{{ __('Galeri Kegiatan') }}</h2>
+            <a href="{{ route('admin.galleries.create') }}" class="admin-btn-primary">+ Tambah Foto</a>
         </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @if(session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-700 rounded-lg border border-green-200">{{ session('success') }}</div>
-            @endif
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                @forelse ($galleries as $item)
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg border border-gray-200 group">
-                        <div class="relative">
-                            <img src="{{ Storage::disk('r2')->url($item->image_path) }}" class="w-full h-48 object-cover">
-                            <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                                <form action="{{ route('admin.galleries.destroy', $item) }}" method="POST" onsubmit="return confirm('Hapus foto ini?')">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" class="bg-red-600 text-white p-2 rounded-full hover:bg-red-700 shadow-lg">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-gray-900 truncate">{{ $item->title }}</h3>
-                            <p class="text-xs text-gray-500 mt-1">{{ $item->created_at->format('d M Y') }}</p>
-                        </div>
-                    </div>
-                @empty
-                    <div class="col-span-full p-12 text-center bg-white rounded-lg border-2 border-dashed text-gray-400">Belum ada foto kegiatan.</div>
-                @endforelse
-            </div>
-            <div class="mt-6">{{ $galleries->links() }}</div>
+    @if(session('success'))
+        <div class="mb-5 p-4 bg-green-50 border border-green-200 text-green-700 rounded-2xl text-sm font-medium flex items-center gap-2">
+            <span>✓</span> {{ session('success') }}
         </div>
+    @endif
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
+        @forelse ($galleries as $item)
+            <div class="bg-white border border-green-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-green-300 transition-all group">
+                <div class="relative aspect-square overflow-hidden bg-green-50">
+                    <img src="{{ Storage::disk('r2')->url($item->image_path) }}" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" alt="{{ $item->title }}">
+                    <!-- Overlay buttons -->
+                    <div class="absolute inset-0 bg-green-950/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center gap-2">
+                        <a href="{{ route('admin.galleries.edit', $item) }}"
+                           class="w-9 h-9 rounded-full bg-yellow-400 hover:bg-yellow-300 flex items-center justify-center text-yellow-900 text-sm shadow-lg transition-all"
+                           title="Edit">✎</a>
+                        <form action="{{ route('admin.galleries.destroy', $item) }}" method="POST" class="inline" onsubmit="return confirm('Hapus foto ini?')">
+                            @csrf @method('DELETE')
+                            <button type="submit" class="w-9 h-9 rounded-full bg-red-500 hover:bg-red-400 flex items-center justify-center text-white text-sm shadow-lg transition-all" title="Hapus">🗑</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="p-3">
+                    <p class="font-bold text-green-900 text-sm truncate">{{ $item->title }}</p>
+                    <p class="text-xs text-gray-400 mt-0.5">{{ $item->created_at->format('d M Y') }}</p>
+                </div>
+            </div>
+        @empty
+            <div class="col-span-full py-20 text-center bg-white border-2 border-dashed border-green-200 rounded-2xl text-green-400">
+                <div class="text-4xl mb-3">🖼️</div>
+                <p class="font-semibold text-gray-500">Belum ada foto kegiatan.</p>
+                <a href="{{ route('admin.galleries.create') }}" class="mt-3 inline-block text-xs font-bold text-green-600 hover:underline">+ Upload foto pertama</a>
+            </div>
+        @endforelse
     </div>
+
+    @if($galleries->hasPages())
+        <div class="mt-6">{{ $galleries->links() }}</div>
+    @endif
+
+    <style>
+        .admin-btn-primary { background:linear-gradient(135deg,#16a34a,#22c55e); color:#fff; font-size:0.8rem; font-weight:800; padding:9px 20px; border-radius:9999px; box-shadow:0 2px 10px rgba(22,163,74,0.35); transition:all 0.2s; display:inline-block; }
+        .admin-btn-primary:hover { box-shadow:0 4px 16px rgba(22,163,74,0.5); transform:translateY(-1px); }
+    </style>
 </x-app-layout>

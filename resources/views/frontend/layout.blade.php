@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $profile->name ?? 'Profil Sekolah' }}</title>
     <meta name="description" content="{{ $profile->slogan ?? 'Website resmi sekolah kami' }}">
+    @php
+        $logoUrl = (isset($profile) && $profile->logo && \Illuminate\Support\Str::contains($profile->logo, ['/'])) ? Storage::url($profile->logo) : asset($profile->logo ?? 'logo.png');
+    @endphp
+    <link rel="icon" href="{{ $logoUrl }}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -147,9 +151,7 @@
             <div class="flex justify-between items-center py-4">
                 <!-- Brand -->
                 <div class="flex items-center gap-3">
-                    @if(isset($profile) && $profile->logo)
-                        <img src="{{ asset($profile->logo) }}" alt="Logo" class="h-10 w-10 rounded-full object-cover ring-2 ring-green-400/40">
-                    @endif
+                    <img src="{{ $logoUrl }}" alt="Logo" class="h-10 w-10 rounded-full object-cover ring-2 ring-green-400/40">
                     <span class="font-black text-lg md:text-xl text-green-300 tracking-tight">{{ $profile->name ?? 'Sekolah Kita' }}</span>
                 </div>
 

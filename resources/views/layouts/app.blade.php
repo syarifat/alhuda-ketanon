@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Admin Panel') }} — CMS</title>
+    @php
+        $appProfile = \App\Models\SchoolProfile::first();
+        $headLogoUrl = ($appProfile && $appProfile->logo && \Illuminate\Support\Str::contains($appProfile->logo, ['/'])) ? Storage::url($appProfile->logo) : asset($appProfile->logo ?? 'logo.png');
+    @endphp
+    <link rel="icon" href="{{ $headLogoUrl }}" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">

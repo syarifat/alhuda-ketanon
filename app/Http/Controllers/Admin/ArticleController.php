@@ -31,8 +31,7 @@ class ArticleController extends Controller
 
         $path = null;
         if ($request->hasFile('thumbnail')) {
-            // Upload ke R2 di folder 'articles'
-            $path = $request->file('thumbnail')->store('articles', 'r2');
+            $path = $request->file('thumbnail')->store('articles', 'public');
         }
 
         Article::create([
@@ -67,12 +66,10 @@ class ArticleController extends Controller
         ];
 
         if ($request->hasFile('thumbnail')) {
-            // Hapus foto lama dari R2 jika ada
             if ($article->thumbnail) {
-                Storage::disk('r2')->delete($article->thumbnail);
+                Storage::disk('public')->delete($article->thumbnail);
             }
-            // Upload foto baru
-            $data['thumbnail'] = $request->file('thumbnail')->store('articles', 'r2');
+            $data['thumbnail'] = $request->file('thumbnail')->store('articles', 'public');
         }
 
         $article->update($data);
@@ -83,7 +80,7 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         if ($article->thumbnail) {
-            Storage::disk('r2')->delete($article->thumbnail);
+            Storage::disk('public')->delete($article->thumbnail);
         }
         
         $article->delete();

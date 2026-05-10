@@ -271,7 +271,7 @@
                 @if($article->thumbnail)
                 <figure>
                     <div class="art-thumb-wrap">
-                        <img src="{{ Storage::disk('r2')->url($article->thumbnail) }}"
+                        <img src="{{ Storage::url($article->thumbnail) }}"
                              alt="{{ $article->title }}" loading="lazy">
                     </div>
                     <figcaption class="art-thumb-caption">
@@ -317,7 +317,7 @@
                     @forelse($related as $rel)
                         <a href="{{ route('article.show', $rel->slug) }}" target="_blank" class="related-item">
                             @if($rel->thumbnail)
-                                <img src="{{ Storage::disk('r2')->url($rel->thumbnail) }}"
+                                <img src="{{ Storage::url($rel->thumbnail) }}"
                                      class="related-img" alt="{{ $rel->title }}" loading="lazy">
                             @else
                                 <div class="related-img bg-green-50 flex items-center justify-center text-green-300 text-lg">📰</div>

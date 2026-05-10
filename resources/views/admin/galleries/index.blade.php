@@ -16,7 +16,7 @@
         @forelse ($galleries as $item)
             <div class="bg-white border border-green-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-green-300 transition-all group">
                 <div class="relative aspect-square overflow-hidden bg-green-50">
-                    <img src="{{ Storage::disk('r2')->url($item->image_path) }}" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" alt="{{ $item->title }}">
+                    <img src="{{ Storage::url($item->image_path) }}" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" alt="{{ $item->title }}">
                     <!-- Overlay buttons -->
                     <div class="absolute inset-0 bg-green-950/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center gap-2">
                         <a href="{{ route('admin.galleries.edit', $item) }}"

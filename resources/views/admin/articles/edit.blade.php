@@ -37,7 +37,7 @@
                                 <x-input-label :value="__('Thumbnail Saat Ini')" class="font-bold mb-2" />
                                 @if($article->thumbnail)
                                     <div class="relative rounded-lg overflow-hidden border border-gray-200 mb-4 group">
-                                        <img src="{{ Storage::disk('r2')->url($article->thumbnail) }}" alt="Thumbnail" class="w-full h-auto object-cover aspect-video">
+                                        <img src="{{ Storage::url($article->thumbnail) }}" alt="Thumbnail" class="w-full h-auto object-cover aspect-video">
                                     </div>
                                 @else
                                     <div class="p-4 bg-gray-50 text-center text-sm text-gray-500 rounded-lg mb-4 border border-dashed">

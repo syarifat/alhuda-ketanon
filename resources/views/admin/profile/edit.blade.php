@@ -74,7 +74,7 @@
                 <div>
                     <label class="form-label">Foto Kepala Sekolah <span class="text-gray-400 font-normal">(opsional)</span></label>
                     @if($profile->principal_photo)
-                        @php $photoUrl = Str::contains($profile->principal_photo, ['/']) ? Storage::disk('r2')->url($profile->principal_photo) : asset($profile->principal_photo); @endphp
+                        @php $photoUrl = Str::contains($profile->principal_photo, ['/']) ? Storage::url($profile->principal_photo) : asset($profile->principal_photo); @endphp
                         <img src="{{ $photoUrl }}" class="w-20 h-20 rounded-full object-cover mb-2 border-2 border-green-200 shadow" alt="Kepsek">
                     @endif
                     <input type="file" name="principal_photo" class="form-file">

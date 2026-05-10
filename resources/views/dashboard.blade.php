@@ -57,7 +57,7 @@
                 @forelse($recentArticles as $article)
                     <div class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-green-50 border border-transparent hover:border-green-100 transition-all">
                         @if($article->thumbnail)
-                            <img src="{{ Storage::disk('r2')->url($article->thumbnail) }}" class="w-10 h-10 rounded-lg object-cover flex-shrink-0 shadow-sm" alt="">
+                            <img src="{{ Storage::url($article->thumbnail) }}" class="w-10 h-10 rounded-lg object-cover flex-shrink-0 shadow-sm" alt="">
                         @else
                             <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-500 flex-shrink-0 text-sm">📰</div>
                         @endif

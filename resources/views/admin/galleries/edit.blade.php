@@ -35,7 +35,7 @@
                             
                             <div class="mb-4">
                                 <p class="text-sm font-semibold text-gray-700 mb-2">Foto Saat Ini:</p>
-                                <img src="{{ Storage::disk('r2')->url($gallery->image_path) }}" class="w-full h-auto rounded-md shadow-sm border" alt="{{ $gallery->title }}">
+                                <img src="{{ Storage::url($gallery->image_path) }}" class="w-full h-auto rounded-md shadow-sm border" alt="{{ $gallery->title }}">
                             </div>
 
                             <div class="mb-6">

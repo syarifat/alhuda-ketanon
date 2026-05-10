@@ -98,7 +98,7 @@
                     <div class="w-full h-full rounded-full p-1" style="background: linear-gradient(135deg, #16a34a, #4ade80, #86efac)">
                         <div class="w-full h-full rounded-full overflow-hidden bg-green-50">
                             @if($profile && $profile->principal_photo)
-                                @php $photoUrl = Str::contains($profile->principal_photo, ['/']) ? Storage::disk('r2')->url($profile->principal_photo) : asset($profile->principal_photo); @endphp
+                                @php $photoUrl = Str::contains($profile->principal_photo, ['/']) ? Storage::url($profile->principal_photo) : asset($profile->principal_photo); @endphp
                                 <img src="{{ $photoUrl }}" class="w-full h-full object-cover" alt="Kepala Sekolah">
                             @else
                                 <div class="w-full h-full bg-green-100 flex items-center justify-center text-green-400 text-sm">Foto</div>
@@ -170,7 +170,7 @@
                 <a href="{{ route('article.show', $headline->slug) }}" target="_blank" class="lg:col-span-2 group block reveal-left">
                     <div class="relative rounded-3xl overflow-hidden aspect-video shadow-xl border border-green-100">
                         @if($headline->thumbnail)
-                            <img src="{{ Storage::disk('r2')->url($headline->thumbnail) }}" alt="{{ $headline->title }}" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                            <img src="{{ Storage::url($headline->thumbnail) }}" alt="{{ $headline->title }}" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
                         @else
                             <div class="w-full h-full bg-green-100 flex items-center justify-center text-green-500 text-sm">No Image</div>
                         @endif
@@ -201,7 +201,7 @@
                            class="flex items-center gap-4 group p-3 rounded-2xl border border-green-100 bg-white hover:border-green-300 hover:shadow-md transition-all duration-200">
                             <div class="w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden bg-green-50 shadow-sm">
                                 @if($article->thumbnail)
-                                    <img src="{{ Storage::disk('r2')->url($article->thumbnail) }}" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500" alt="{{ $article->title }}">
+                                    <img src="{{ Storage::url($article->thumbnail) }}" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500" alt="{{ $article->title }}">
                                 @else
                                     <div class="w-full h-full bg-green-100 flex items-center justify-center text-green-400 text-xs">No Img</div>
                                 @endif
@@ -247,14 +247,14 @@
             @forelse($galleries as $gallery)
                 <button
                     onclick="openGalleryModal(
-                        '{{ Storage::disk('r2')->url($gallery->image_path) }}',
+                        '{{ Storage::url($gallery->image_path) }}',
                         '{{ addslashes($gallery->title) }}',
                         '{{ addslashes($gallery->description ?? '') }}'
                     )"
                     class="relative group rounded-2xl overflow-hidden aspect-square bg-green-50 shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-400 border border-green-100 hover:border-green-300 hover:shadow-xl transition-all duration-300"
                 >
                     <img
-                        src="{{ Storage::disk('r2')->url($gallery->image_path) }}"
+                        src="{{ Storage::url($gallery->image_path) }}"
                         alt="{{ $gallery->title }}"
                         class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
                     >

@@ -32,7 +32,7 @@
                             <td class="px-5 py-4 text-center text-sm text-gray-400 font-medium">{{ $articles->firstItem() + $index }}</td>
                             <td class="px-5 py-4 text-center">
                                 @if($article->thumbnail)
-                                    <img src="{{ Storage::disk('r2')->url($article->thumbnail) }}" class="w-14 h-14 object-cover rounded-xl mx-auto shadow-sm border border-green-100" alt="">
+                                    <img src="{{ Storage::url($article->thumbnail) }}" class="w-14 h-14 object-cover rounded-xl mx-auto shadow-sm border border-green-100" alt="">
                                 @else
                                     <div class="w-14 h-14 bg-green-50 border border-green-100 rounded-xl mx-auto flex items-center justify-center text-green-300 text-lg">📰</div>
                                 @endif

@@ -75,22 +75,14 @@
         </div>
     </div>
 
-    <!-- Script for CKEditor 5 -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <!-- Script for CKEditor 4 (Mendukung Align Text) -->
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            ClassicEditor
-                .create( document.querySelector( '#content' ), {
-                    toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'undo', 'redo' ]
-                } )
-                .catch( error => {
-                    console.error( error );
-                } );
+            CKEDITOR.replace('content', {
+                height: 400,
+                removeButtons: 'Image,About'
+            });
         });
     </script>
-    <style>
-        .ck-editor__editable_inline {
-            min-height: 400px;
-        }
-    </style>
 </x-app-layout>

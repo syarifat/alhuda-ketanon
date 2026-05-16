@@ -75,4 +75,23 @@
             </form>
         </div>
     </div>
+
+    <!-- Script for CKEditor 5 -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            ClassicEditor
+                .create( document.querySelector( '#content' ), {
+                    toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'undo', 'redo' ]
+                } )
+                .catch( error => {
+                    console.error( error );
+                } );
+        });
+    </script>
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 400px;
+        }
+    </style>
 </x-app-layout>

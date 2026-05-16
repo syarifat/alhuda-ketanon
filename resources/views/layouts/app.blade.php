@@ -270,7 +270,7 @@
                 <div class="sidebar-avatar">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
                 <div class="min-w-0">
                     <div class="sidebar-user-name truncate">{{ Auth::user()->name }}</div>
-                    <div class="sidebar-user-email truncate">{{ Auth::user()->email }}</div>
+                    <div class="sidebar-user-email truncate">@ {{ Auth::user()->username }}</div>
                 </div>
             </div>
         </div>

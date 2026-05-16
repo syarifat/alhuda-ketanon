@@ -13,7 +13,7 @@
                 </div>
                 <div>
                     <p class="font-black text-green-900">{{ Auth::user()->name }}</p>
-                    <p class="text-xs text-gray-400">{{ Auth::user()->email }}</p>
+                    <p class="text-xs text-gray-400">@ {{ Auth::user()->username }}</p>
                 </div>
             </div>
 
@@ -31,10 +31,10 @@
                     <x-input-error class="mt-1.5" :messages="$errors->get('name')" />
                 </div>
                 <div>
-                    <label class="form-label" for="email">Alamat Email</label>
-                    <input id="email" name="email" type="email" value="{{ old('email', $user->email) }}"
+                    <label class="form-label" for="username">Username</label>
+                    <input id="username" name="username" type="text" value="{{ old('username', $user->username) }}"
                            class="form-input" required autocomplete="username">
-                    <x-input-error class="mt-1.5" :messages="$errors->get('email')" />
+                    <x-input-error class="mt-1.5" :messages="$errors->get('username')" />
                 </div>
                 <div class="flex items-center gap-4 pt-2">
                     <button type="submit" class="admin-btn-primary px-6 py-2.5">Simpan Perubahan</button>

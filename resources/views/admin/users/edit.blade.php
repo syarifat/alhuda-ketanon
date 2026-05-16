@@ -36,12 +36,7 @@
                     <x-input-error :messages="$errors->get('username')" class="mt-1.5" />
                 </div>
 
-                <div>
-                    <label class="form-label" for="email">Email</label>
-                    <input id="email" name="email" type="email" value="{{ old('email', $user->email) }}"
-                           class="form-input" required>
-                    <x-input-error :messages="$errors->get('email')" class="mt-1.5" />
-                </div>
+
 
                 <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-4">
                     <p class="text-xs font-bold text-yellow-700 mb-3 flex items-center gap-1.5">🔑 Ubah Password <span class="font-normal text-yellow-600">(kosongkan jika tidak ingin mengubah)</span></p>

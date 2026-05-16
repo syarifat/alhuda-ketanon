@@ -25,7 +25,6 @@
                         <th class="px-5 py-3.5 text-xs font-black text-green-700 uppercase tracking-wider text-center w-12">No</th>
                         <th class="px-5 py-3.5 text-xs font-black text-green-700 uppercase tracking-wider">Pengguna</th>
                         <th class="px-5 py-3.5 text-xs font-black text-green-700 uppercase tracking-wider hidden sm:table-cell">Username</th>
-                        <th class="px-5 py-3.5 text-xs font-black text-green-700 uppercase tracking-wider hidden md:table-cell">Email</th>
                         <th class="px-5 py-3.5 text-xs font-black text-green-700 uppercase tracking-wider text-center hidden lg:table-cell">Terdaftar</th>
                         <th class="px-5 py-3.5 text-xs font-black text-green-700 uppercase tracking-wider text-center">Aksi</th>
                     </tr>
@@ -46,12 +45,11 @@
                                                 <span class="text-xs font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Anda</span>
                                             @endif
                                         </p>
-                                        <p class="text-xs text-gray-400 md:hidden">{{ $user->email }}</p>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-5 py-4 text-sm text-gray-500 hidden sm:table-cell font-mono">{{ $user->username ?? '-' }}</td>
-                            <td class="px-5 py-4 text-sm text-gray-500 hidden md:table-cell">{{ $user->email }}</td>
+
                             <td class="px-5 py-4 text-center text-xs text-gray-400 hidden lg:table-cell">{{ $user->created_at->format('d M Y') }}</td>
                             <td class="px-5 py-4 text-center">
                                 <div class="flex items-center justify-center gap-2">
@@ -72,7 +70,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-5 py-16 text-center text-gray-400">
+                            <td colspan="5" class="px-5 py-16 text-center text-gray-400">
                                 <div class="text-4xl mb-3">👤</div>
                                 <p class="font-semibold">Belum ada user terdaftar.</p>
                             </td>

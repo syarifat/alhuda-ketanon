@@ -25,12 +25,7 @@
                     <x-input-error :messages="$errors->get('username')" class="mt-1.5" />
                 </div>
 
-                <div>
-                    <label class="form-label" for="email">Email</label>
-                    <input id="email" name="email" type="email" value="{{ old('email') }}"
-                           class="form-input" required placeholder="user@email.com">
-                    <x-input-error :messages="$errors->get('email')" class="mt-1.5" />
-                </div>
+
 
                 <div>
                     <label class="form-label" for="password">Password</label>

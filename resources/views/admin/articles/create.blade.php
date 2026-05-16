@@ -77,10 +77,11 @@
     </div>
 
     <!-- Script for CKEditor 4 (Mendukung Align Text) -->
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard-all/ckeditor.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             CKEDITOR.replace('content', {
+                extraPlugins: 'justify,font,colorbutton,colordialog',
                 height: 400,
                 // Hilangkan tombol image upload bawaan karena menggunakan thumbnail terpisah
                 removeButtons: 'Image,About'

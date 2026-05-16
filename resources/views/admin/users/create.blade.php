@@ -5,7 +5,18 @@
             <h2 class="font-black text-green-900 text-xl">Tambah User Baru</h2>
         </div>
     </x-slot>
-
+    @if($errors->any())
+        <div class="max-w-lg mb-5 p-4 bg-red-50 border border-red-200 text-red-600 rounded-2xl text-sm font-medium">
+            <div class="flex items-center gap-2 mb-2">
+                <span>✕</span> <strong>Gagal menyimpan:</strong>
+            </div>
+            <ul class="list-disc list-inside ml-5 text-xs opacity-80">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="max-w-lg">
         <div class="admin-card">
             <form action="{{ route('admin.users.store') }}" method="POST" class="space-y-5">

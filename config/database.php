@@ -47,11 +47,11 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'laravel'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_HOST', 'gateway01.eu-central-1.prod.aws.tidbcloud.com'),
+            'port' => env('DB_PORT', '4000'),
+            'database' => env('DB_DATABASE', 'alhuda'),
+            'username' => env('DB_USERNAME', '31bqYDsrSeVQe5q.root'),
+            'password' => env('DB_PASSWORD', 'h4DFVg4jj2CLjGyV'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => env('DB_CHARSET', 'utf8mb4'),
             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
@@ -60,9 +60,13 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                (PHP_VERSION_ID >= 80500 ? Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA')
-                    ? (str_starts_with(env('MYSQL_ATTR_SSL_CA'), '/') ? env('MYSQL_ATTR_SSL_CA') : base_path(env('MYSQL_ATTR_SSL_CA')))
-                    : null,
+                (defined('PDO::MYSQL_ATTR_SSL_CA') ? PDO::MYSQL_ATTR_SSL_CA : 1009) => (function () {
+                    $ca = env('MYSQL_ATTR_SSL_CA', 'storage/certs/ca.pem');
+                    if ($ca && file_exists($ca)) return $ca;
+                    if ($ca && file_exists(base_path($ca))) return base_path($ca);
+                    if (file_exists('/tmp/certs/ca.pem')) return '/tmp/certs/ca.pem';
+                    return null;
+                })(),
             ]) : [],
         ],
 

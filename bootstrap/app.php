@@ -15,7 +15,9 @@ $app = Application::configure(basePath: dirname(__DIR__))
         $middleware->append(AntiBotScraper::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->report(function (\Throwable $e) {
+            error_log('[LARAVEL_ERROR] ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine() . "\n" . $e->getTraceAsString());
+        });
     })->create();
 
 if (!empty($_ENV['LARAVEL_STORAGE_PATH']) && is_dir($_ENV['LARAVEL_STORAGE_PATH'])) {

@@ -61,10 +61,12 @@
         font-size: 1.05rem;
         font-weight: 500;
         color: #374151;
-        line-height: 1.7;
+        line-height: 1.8;
         border-left: 4px solid #16a34a;
         padding-left: 16px;
         margin-bottom: 24px;
+        text-align: justify;
+        text-justify: inter-word;
     }
 
     /* ── Meta bar ── */
@@ -135,11 +137,20 @@
 
     /* ── Article prose ── */
     .art-body {
-        font-size: 1.02rem;
-        line-height: 1.85;
+        font-size: 1.05rem;
+        line-height: 1.95;
         color: #1e293b;
+        text-align: justify;
+        text-justify: inter-word;
     }
-    .art-body p { margin-bottom: 1.4em; }
+    .art-body p,
+    .art-body div,
+    .art-body section {
+        text-align: justify;
+        text-justify: inter-word;
+        hyphens: auto;
+    }
+    .art-body p { margin-bottom: 1.5em; }
     .art-body h2 { font-size: 1.35rem; font-weight: 800; color: #0f172a; margin: 2em 0 0.6em; border-bottom: 2px solid #16a34a; padding-bottom: 6px; display: inline-block; }
     .art-body h3 { font-size: 1.15rem; font-weight: 700; color: #0f172a; margin: 1.6em 0 0.5em; }
     .art-body strong { color: #0f172a; font-weight: 700; }
@@ -152,6 +163,7 @@
         margin: 1.6em 0; padding: 14px 20px;
         background: #f0fdf4; border-radius: 0 10px 10px 0;
         font-style: italic; color: #374151;
+        text-align: justify;
     }
     .art-body img { width: 100%; border-radius: 10px; margin: 1.4em 0; box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
     .art-body table { width: 100%; border-collapse: collapse; margin: 1.4em 0; font-size: 0.9rem; }
@@ -162,37 +174,64 @@
     /* ── Sidebar widgets ── */
     .widget-card {
         background: #fff;
-        border: 1px solid #e5e7eb;
-        border-radius: 10px;
-        overflow: hidden;
-        margin-bottom: 20px;
-        box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        transition: box-shadow 0.2s, border-color 0.2s;
     }
-    .widget-title {
-        font-size: 0.72rem;
-        font-weight: 900;
-        letter-spacing: 0.1em;
+    .widget-card:hover {
+        box-shadow: 0 6px 24px rgba(22,163,74,0.08);
+        border-color: #bbf7d0;
+    }
+    .widget-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-bottom: 14px;
+        margin-bottom: 14px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    .widget-header-icon {
+        width: 36px; height: 36px;
+        border-radius: 10px;
+        background: #f0fdf4;
+        color: #16a34a;
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+        border: 1px solid #dcfce7;
+    }
+    .widget-header-title {
+        font-size: 0.88rem;
+        font-weight: 800;
+        color: #0f172a;
+        line-height: 1.2;
+    }
+    .widget-header-sub {
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: #16a34a;
         text-transform: uppercase;
-        color: #fff;
-        background: linear-gradient(90deg, #16a34a, #22c55e);
-        padding: 9px 16px;
+        letter-spacing: 0.08em;
+        margin-top: 2px;
     }
     .related-item {
-        display: flex; gap: 10px; align-items: center;
-        padding: 12px 14px;
-        border-bottom: 1px solid #f1f5f9;
+        display: flex; gap: 12px; align-items: center;
+        padding: 10px;
+        margin: 0 -8px;
+        border-radius: 12px;
         transition: background 0.15s;
         text-decoration: none;
     }
     .related-item:hover { background: #f0fdf4; }
-    .related-item:last-child { border-bottom: none; }
     .related-img {
-        width: 68px; height: 52px; border-radius: 6px;
+        width: 72px; height: 54px; border-radius: 8px;
         object-fit: cover; flex-shrink: 0;
-        background: #e5e7eb;
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
     }
     .related-item-title {
-        font-size: 0.78rem;
+        font-size: 0.8rem;
         font-weight: 700;
         color: #1e293b;
         line-height: 1.4;
@@ -201,7 +240,13 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
-    .related-item-date { font-size: 0.65rem; color: #9ca3af; margin-top: 4px; }
+    .related-item:hover .related-item-title {
+        color: #15803d;
+    }
+    .related-item-date {
+        display: flex; align-items: center; gap: 4px;
+        font-size: 0.68rem; color: #94a3b8; margin-top: 5px;
+    }
 
     /* ── Back / footer bar ── */
     .art-footer-bar {
@@ -217,12 +262,11 @@
 
     /* ── Reading progress bar ── */
     #read-progress {
-        position: fixed; top: 60px; left: 0; right: 0; z-index: 999;
-        height: 3px;
+        position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+        height: 3.5px;
         background: linear-gradient(90deg, #16a34a, #4ade80);
         width: 0%;
         transition: width 0.1s linear;
-        border-radius: 0 2px 2px 0;
     }
 
     /* ── Breadcrumb ── */
@@ -234,22 +278,18 @@
     }
     .art-breadcrumb a { color: #6b7280; hover: underline; transition: color 0.15s; }
     .art-breadcrumb a:hover { color: #16a34a; }
-
     @media (max-width: 640px) {
         .art-title { font-size: 1.4rem; }
         .art-body { font-size: 0.95rem; }
     }
 </style>
 
-<!-- Reading progress bar -->
-<div id="read-progress"></div>
-
 <div class="article-page">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex flex-col lg:flex-row gap-8 items-start">
 
             {{-- ── MAIN ARTICLE COLUMN ── --}}
-            <main class="flex-1 min-w-0">
+            <main class="flex-1 min-w-0 bg-white p-6 sm:p-10 rounded-3xl border border-gray-100 shadow-sm">
 
                 {{-- Breadcrumb --}}
                 <nav class="art-breadcrumb">
@@ -293,7 +333,7 @@
                     <a href="https://api.whatsapp.com/send?text={{ urlencode($article->title . ' ' . request()->url()) }}"
                        target="_blank" class="share-btn share-wa">
                         <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        WhatsApp
+                    WhatsApp
                     </a>
                     <button onclick="copyLink()" class="share-btn share-copy" id="copy-btn">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
@@ -315,7 +355,7 @@
                 @endif
 
                 {{-- Body --}}
-                <div class="art-body" id="article-body">
+                <div class="art-body text-justify" id="article-body">
                     {!! $article->content !!}
                 </div>
 
@@ -339,61 +379,83 @@
             </main>
 
             {{-- ── SIDEBAR ── --}}
-            <aside class="w-full lg:w-72 flex-shrink-0">
+            <aside class="w-full lg:w-[330px] flex-shrink-0 lg:sticky lg:top-24 space-y-6">
 
                 {{-- Related articles widget --}}
-                <div class="widget-card sticky top-[72px]">
-                    <div class="widget-title flex items-center gap-2">
-                        <svg class="w-4 h-4 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
-                            <path d="M18 14h-8"/>
-                            <path d="M15 18h-5"/>
-                            <path d="M10 6h8v4h-8V6Z"/>
-                        </svg>
-                        Berita Lainnya
+                <div class="widget-card">
+                    <div class="widget-header">
+                        <div class="widget-header-icon">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                                <path d="M18 14h-8"/>
+                                <path d="M15 18h-5"/>
+                                <path d="M10 6h8v4h-8V6Z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="widget-header-title">Berita Lainnya</h3>
+                            <p class="widget-header-sub">Informasi Terkini</p>
+                        </div>
                     </div>
-                    @forelse($relatedArticles as $rel)
-                        <a href="{{ route('article.show', $rel->slug) }}" target="_blank" class="related-item">
-                            @if($rel->thumbnail)
-                                <img src="{{ Storage::url($rel->thumbnail) }}"
-                                     class="related-img" alt="{{ $rel->title }}" loading="lazy">
-                            @else
-                                <div class="related-img bg-green-50 flex items-center justify-center text-green-400">
-                                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
-                                        <path d="M18 14h-8"/>
-                                        <path d="M15 18h-5"/>
-                                        <path d="M10 6h8v4h-8V6Z"/>
-                                    </svg>
+
+                    <div class="space-y-3">
+                        @forelse($relatedArticles as $rel)
+                            <a href="{{ route('article.show', $rel->slug) }}" class="related-item group">
+                                @if($rel->thumbnail)
+                                    <img src="{{ Storage::url($rel->thumbnail) }}"
+                                         class="related-img" alt="{{ $rel->title }}" loading="lazy">
+                                @else
+                                    <div class="related-img flex items-center justify-center text-green-600">
+                                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                                            <path d="M18 14h-8"/>
+                                            <path d="M15 18h-5"/>
+                                            <path d="M10 6h8v4h-8V6Z"/>
+                                        </svg>
+                                    </div>
+                                @endif
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="related-item-title">{{ $rel->title }}</h4>
+                                    <div class="related-item-date">
+                                        <svg class="w-3 h-3 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                                        </svg>
+                                        <span>{{ $rel->created_at->translatedFormat('d M Y') }}</span>
+                                    </div>
                                 </div>
-                            @endif
-                            <div class="min-w-0">
-                                <div class="related-item-title">{{ $rel->title }}</div>
-                                <div class="related-item-date">{{ $rel->created_at->format('d M Y') }}</div>
-                            </div>
-                        </a>
-                    @empty
-                        <div class="p-4 text-xs text-gray-400 text-center">Belum ada berita lain.</div>
-                    @endforelse
+                            </a>
+                        @empty
+                            <div class="py-6 text-xs text-gray-400 text-center font-medium">Belum ada berita lain.</div>
+                        @endforelse
+                    </div>
                 </div>
 
                 {{-- School info widget --}}
-                <div class="widget-card">
-                    <div class="widget-title flex items-center gap-2">
-                        <svg class="w-4 h-4 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 21h18M3 7v14M21 7v14M6 11h4M6 15h4M14 11h4M14 15h4M12 3l9 4H3l9-4z"/>
-                        </svg>
-                        Tentang Kami
+                <div class="widget-card text-center">
+                    <div class="widget-header text-left">
+                        <div class="widget-header-icon">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 21h18M3 7v14M21 7v14M6 11h4M6 15h4M14 11h4M14 15h4M12 3l9 4H3l9-4z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="widget-header-title">Tentang Madrasah</h3>
+                            <p class="widget-header-sub">Profil Singkat</p>
+                        </div>
                     </div>
-                    <div class="p-4 text-center">
+                    <div class="pt-2">
                         @php
                             $logoUrl = ($profile && $profile->logo && Str::contains($profile->logo, ['/'])) ? Storage::url($profile->logo) : asset($profile->logo ?? 'logo.png');
                         @endphp
-                        <img src="{{ $logoUrl }}" alt="Logo" class="w-16 h-16 mx-auto mb-3 object-contain">
-                        <p class="font-black text-sm text-gray-800">{{ config('app.name') }}</p>
+                        <img src="{{ $logoUrl }}" alt="Logo" class="w-16 h-16 mx-auto mb-3 object-contain drop-shadow-sm">
+                        <p class="font-black text-sm text-gray-900">{{ $profile->name ?? config('app.name') }}</p>
+                        <p class="text-xs text-green-700/70 mt-1 leading-relaxed">{{ $profile->slogan ?? 'Membentuk Generasi Qurani, Cerdas, dan Berakhlak Mulia' }}</p>
                         <a href="{{ route('home') }}"
-                           class="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-green-700 border border-green-300 px-4 py-1.5 rounded-full hover:bg-green-50 transition-all">
-                            <span>Kunjungi Website</span>
+                           class="mt-4 inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl text-xs font-bold text-green-700 bg-green-50 hover:bg-green-100 border border-green-200 hover:border-green-300 transition-all">
+                            <span>Kunjungi Website Utama</span>
                             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
@@ -426,7 +488,6 @@
             setTimeout(() => { btn.innerHTML = '<svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2"/></svg> Salin Link'; }, 2000);
         });
     }
-</script>
 </script>
 
 @endsection

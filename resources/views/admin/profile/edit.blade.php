@@ -5,7 +5,10 @@
 
     @if(session('success'))
         <div class="mb-5 p-4 bg-green-50 border border-green-200 text-green-700 rounded-2xl text-sm font-medium flex items-center gap-2">
-            <span>✓</span> {{ session('success') }}
+            <svg class="w-4 h-4 text-green-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>{{ session('success') }}</span>
         </div>
     @endif
 
@@ -15,7 +18,11 @@
         {{-- 1. Identitas Dasar --}}
         <div class="admin-card">
             <div class="flex items-center gap-3 mb-5">
-                <div class="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-base">🏫</div>
+                <div class="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-700">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 21h18M3 7v14M21 7v14M6 11h4M6 15h4M14 11h4M14 15h4M12 3l9 4H3l9-4z"/>
+                    </svg>
+                </div>
                 <h3 class="font-black text-green-900">Identitas Dasar</h3>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -45,7 +52,12 @@
         {{-- 2. Narasi --}}
         <div class="admin-card">
             <div class="flex items-center gap-3 mb-5">
-                <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-base">📖</div>
+                <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                </div>
                 <h3 class="font-black text-green-900">Konten Narasi</h3>
             </div>
             <div class="space-y-4">
@@ -55,28 +67,24 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="form-label">Visi</label>
+                        <label class="form-label">Visi Sekolah</label>
                         <textarea name="vision" rows="3" class="form-textarea">{{ old('vision', $profile->vision) }}</textarea>
                     </div>
                     <div>
-                        <label class="form-label">Misi</label>
+                        <label class="form-label">Misi Sekolah</label>
                         <textarea name="mission" rows="3" class="form-textarea">{{ old('mission', $profile->mission) }}</textarea>
                     </div>
                 </div>
                 <div>
-                    <label class="form-label">Tujuan &amp; Sasaran</label>
-                    <textarea name="goals" rows="4" class="form-textarea">{{ old('goals', $profile->goals) }}</textarea>
+                    <label class="form-label">Nama Kepala Madrasah</label>
+                    <x-text-input name="principal_name" value="{{ old('principal_name', $profile->principal_name) }}" class="form-input" />
                 </div>
                 <div>
-                    <label class="form-label">Sambutan Kepala Sekolah</label>
+                    <label class="form-label">Sambutan Kepala Madrasah</label>
                     <textarea name="principal_message" rows="5" class="form-textarea">{{ old('principal_message', $profile->principal_message) }}</textarea>
                 </div>
                 <div>
-                    <label class="form-label">Foto Kepala Sekolah <span class="text-gray-400 font-normal">(opsional)</span></label>
-                    @if($profile->principal_photo)
-                        @php $photoUrl = Str::contains($profile->principal_photo, ['/']) ? Storage::url($profile->principal_photo) : asset($profile->principal_photo); @endphp
-                        <img src="{{ $photoUrl }}" class="w-20 h-20 rounded-full object-cover mb-2 border-2 border-green-200 shadow" alt="Kepsek">
-                    @endif
+                    <label class="form-label">Foto Kepala Madrasah <span class="text-gray-400 font-normal">(opsional)</span></label>
                     <input type="file" name="principal_photo" class="form-file">
                 </div>
             </div>
@@ -85,7 +93,13 @@
         {{-- 3. Kontak & Sosmed --}}
         <div class="admin-card">
             <div class="flex items-center gap-3 mb-5">
-                <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-base">📡</div>
+                <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 11a9 9 0 0 1 9 9"/>
+                        <path d="M4 4a16 16 0 0 1 16 16"/>
+                        <circle cx="5" cy="19" r="1"/>
+                    </svg>
+                </div>
                 <h3 class="font-black text-green-900">Kontak &amp; Media Sosial</h3>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -129,8 +143,13 @@
         </div>
 
         <div class="flex justify-end">
-            <button type="submit" class="admin-btn-primary px-8 py-3">
-                💾 Simpan Semua Perubahan
+            <button type="submit" class="admin-btn-primary px-8 py-3 inline-flex items-center gap-2">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                    <polyline points="17 21 17 13 7 13 7 21"/>
+                    <polyline points="7 3 7 8 15 8"/>
+                </svg>
+                Simpan Semua Perubahan
             </button>
         </div>
     </form>

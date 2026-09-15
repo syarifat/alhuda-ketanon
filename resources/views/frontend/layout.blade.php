@@ -167,7 +167,11 @@
     <div id="scroll-progress"></div>
 
     <!-- Back to top -->
-    <button id="back-to-top" aria-label="Kembali ke atas">↑</button>
+    <button id="back-to-top" aria-label="Kembali ke atas" class="flex items-center justify-center">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
 
     <!-- Navbar -->
     <nav class="nav-sticky sticky top-0 z-50" id="navbar">
@@ -247,8 +251,13 @@
                                 {{ $profile->address ?? '-' }}
                                 @if(isset($profile->maps_link) && $profile->maps_link)
                                     <div class="mt-1.5">
-                                        <a href="{{ $profile->maps_link }}" target="_blank" class="inline-flex items-center gap-1 text-xs font-bold text-green-400 hover:text-green-300 transition-colors">
-                                            Buka di Peta ↗
+                                        <a href="{{ $profile->maps_link }}" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-green-400 hover:text-green-300 transition-colors">
+                                            <span>Buka di Peta</span>
+                                            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                                <polyline points="15 3 21 3 21 9"></polyline>
+                                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                                            </svg>
                                         </a>
                                     </div>
                                 @endif

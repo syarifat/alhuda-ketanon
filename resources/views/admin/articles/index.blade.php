@@ -2,13 +2,22 @@
     <x-slot name="header">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <h2 class="font-black text-green-900 text-xl">Manajemen Berita</h2>
-            <a href="{{ route('admin.articles.create') }}" class="admin-btn-primary">+ Tambah Berita</a>
+            <a href="{{ route('admin.articles.create') }}" class="admin-btn-primary inline-flex items-center gap-1.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>Tambah Berita</span>
+            </a>
         </div>
     </x-slot>
 
     @if(session('success'))
         <div class="mb-5 p-4 bg-green-50 border border-green-200 text-green-700 rounded-2xl text-sm font-medium flex items-center gap-2">
-            <span class="text-green-500 text-base">✓</span> {{ session('success') }}
+            <svg class="w-4 h-4 text-green-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>{{ session('success') }}</span>
         </div>
     @endif
 
@@ -34,13 +43,20 @@
                                 @if($article->thumbnail)
                                     <img src="{{ Storage::url($article->thumbnail) }}" class="w-14 h-14 object-cover rounded-xl mx-auto shadow-sm border border-green-100" alt="">
                                 @else
-                                    <div class="w-14 h-14 bg-green-50 border border-green-100 rounded-xl mx-auto flex items-center justify-center text-green-300 text-lg">📰</div>
+                                    <div class="w-14 h-14 bg-green-50 border border-green-100 rounded-xl mx-auto flex items-center justify-center text-green-400">
+                                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                                            <path d="M18 14h-8"/>
+                                            <path d="M15 18h-5"/>
+                                            <path d="M10 6h8v4h-8V6Z"/>
+                                        </svg>
+                                    </div>
                                 @endif
                             </td>
                             <td class="px-5 py-4">
                                 <p class="font-semibold text-gray-800 truncate max-w-xs md:max-w-sm">{{ $article->title }}</p>
                                 <p class="text-xs mt-1 sm:hidden {{ $article->is_published ? 'text-green-600' : 'text-yellow-600' }} font-bold">
-                                    {{ $article->is_published ? '● Published' : '● Draft' }}
+                                    {{ $article->is_published ? 'Published' : 'Draft' }}
                                 </p>
                             </td>
                             <td class="px-5 py-4 text-center hidden sm:table-cell">
@@ -56,12 +72,20 @@
                                 <div class="flex items-center justify-center gap-2">
                                     <a href="{{ route('admin.articles.edit', $article) }}"
                                        class="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-full transition-all">
-                                        ✎ Edit
+                                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                        </svg>
+                                        Edit
                                     </a>
                                     <form action="{{ route('admin.articles.destroy', $article) }}" method="POST" onsubmit="return confirm('Hapus berita ini?')">
                                         @csrf @method('DELETE')
                                         <button type="submit" class="inline-flex items-center gap-1 text-xs font-bold text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-full transition-all">
-                                            🗑 Hapus
+                                            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="3 6 5 6 21 6"></polyline>
+                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                            </svg>
+                                            Hapus
                                         </button>
                                     </form>
                                 </div>
@@ -70,7 +94,14 @@
                     @empty
                         <tr>
                             <td colspan="7" class="px-5 py-16 text-center text-gray-400">
-                                <div class="text-4xl mb-3">📰</div>
+                                <div class="w-14 h-14 rounded-2xl bg-green-50 border border-green-100 flex items-center justify-center text-green-400 mx-auto mb-3">
+                                    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                                        <path d="M18 14h-8"/>
+                                        <path d="M15 18h-5"/>
+                                        <path d="M10 6h8v4h-8V6Z"/>
+                                    </svg>
+                                </div>
                                 <p class="font-semibold">Belum ada berita.</p>
                                 <a href="{{ route('admin.articles.create') }}" class="mt-3 inline-block text-xs font-bold text-green-600 hover:underline">+ Tulis berita pertama</a>
                             </td>

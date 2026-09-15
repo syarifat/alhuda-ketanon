@@ -219,7 +219,14 @@
                         @if($article->thumbnail)
                             <img src="{{ Storage::url($article->thumbnail) }}" alt="{{ $article->title }}" class="news-img" loading="lazy">
                         @else
-                            <div class="news-img flex items-center justify-center text-3xl">📰</div>
+                            <div class="news-img flex items-center justify-center bg-green-50 text-green-400">
+                                <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                                    <path d="M18 14h-8"/>
+                                    <path d="M15 18h-5"/>
+                                    <path d="M10 6h8v4h-8V6Z"/>
+                                </svg>
+                            </div>
                         @endif
                         <div class="news-content">
                             <span class="news-tag">Berita</span>
@@ -233,7 +240,12 @@
                     </a>
                 @empty
                     <div class="text-center py-20 bg-white border border-gray-200 rounded-xl">
-                        <div class="text-4xl mb-4">🔍</div>
+                        <div class="w-14 h-14 rounded-2xl bg-green-50 border border-green-100 flex items-center justify-center text-green-500 mx-auto mb-4">
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                        </div>
                         <h3 class="text-lg font-bold text-gray-900 mb-2">Berita Tidak Ditemukan</h3>
                         <p class="text-gray-500">Maaf, kami tidak dapat menemukan berita yang sesuai.</p>
                         @if(request('q'))

@@ -113,7 +113,10 @@
                 </div>
                 <div class="text-center">
                     <div class="inline-flex items-center gap-1.5 bg-green-50 border border-green-200 text-green-700 text-xs font-bold px-3 py-1 rounded-full">
-                        ✦ Kepala Madrasah
+                        <svg class="w-3.5 h-3.5 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <span>Kepala Madrasah</span>
                     </div>
                 </div>
             </div>
@@ -173,8 +176,11 @@
                 <div class="w-1 h-8 bg-green-600 rounded"></div>
                 <h2 class="text-2xl md:text-3xl font-black text-green-950">Berita &amp; Pengumuman</h2>
             </div>
-            <a href="{{ route('news.index') }}" class="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-green-600 hover:text-green-800 transition-colors">
-                Semua Berita →
+            <a href="{{ route('news.index') }}" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-green-600 hover:text-green-800 transition-colors">
+                <span>Semua Berita</span>
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
             </a>
         </div>
 
@@ -216,8 +222,11 @@
                                 </span>
                             </p>
                         </div>
-                        <div class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 backdrop-blur border border-white/30 flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            ↗
+                        <div class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 backdrop-blur border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
                         </div>
                     </div>
                 </a>
@@ -247,8 +256,11 @@
             </div>
 
             <div class="mt-8 text-center sm:hidden">
-                <a href="{{ route('news.index') }}" class="inline-flex items-center gap-2 text-xs font-bold text-green-600 hover:text-green-800 uppercase tracking-widest transition-colors">
-                    Lihat Semua Berita →
+                <a href="{{ route('news.index') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-green-600 hover:text-green-800 uppercase tracking-widest transition-colors">
+                    <span>Lihat Semua Berita</span>
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
                 </a>
             </div>
         @else
@@ -309,9 +321,12 @@
         <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-10">
             <!-- Close -->
             <button onclick="closeGalleryModal()"
-                class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 border border-white/20 flex items-center justify-center text-white text-lg transition-all"
+                class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 border border-white/20 flex items-center justify-center text-white transition-all"
                 aria-label="Tutup">
-                ✕
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
             </button>
             <!-- Image -->
             <div class="w-full max-w-3xl">
@@ -389,7 +404,10 @@
 
                 @if(session('success'))
                     <div class="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl text-sm font-medium flex items-center gap-2">
-                        <span class="text-green-500">✓</span> {{ session('success') }}
+                        <svg class="w-4 h-4 text-green-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>{{ session('success') }}</span>
                     </div>
                 @endif
 
@@ -425,9 +443,13 @@
                     </div>
                     <button
                         type="submit"
-                        class="btn-primary w-full py-3.5 px-6 rounded-xl font-bold text-sm tracking-wide"
+                        class="btn-primary w-full py-3.5 px-6 rounded-xl font-bold text-sm tracking-wide inline-flex items-center justify-center gap-2"
                     >
-                        Kirim Pesan Sekarang ✦
+                        <span>Kirim Pesan Sekarang</span>
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
                     </button>
                 </form>
             </div>

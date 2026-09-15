@@ -261,7 +261,15 @@
                 </nav>
 
                 {{-- Category --}}
-                <span class="art-category">📰 Berita</span>
+                <span class="art-category inline-flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                        <path d="M18 14h-8"/>
+                        <path d="M15 18h-5"/>
+                        <path d="M10 6h8v4h-8V6Z"/>
+                    </svg>
+                    Berita
+                </span>
 
                 {{-- Title --}}
                 <h1 class="art-title">{{ $article->title }}</h1>
@@ -315,7 +323,10 @@
                 <div class="art-footer-bar">
                     <a href="{{ route('news.index') }}"
                        class="inline-flex items-center gap-2 text-sm font-bold text-green-700 hover:text-green-900 border border-green-200 hover:border-green-400 px-4 py-2 rounded-full bg-green-50 hover:bg-green-100 transition-all">
-                        ← Kembali ke Berita
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        <span>Kembali ke Berita</span>
                     </a>
                     <span class="text-xs text-gray-400">Terbit: {{ $article->created_at->translatedFormat('d F Y') }}</span>
                 </div>
@@ -332,14 +343,29 @@
 
                 {{-- Related articles widget --}}
                 <div class="widget-card sticky top-[72px]">
-                    <div class="widget-title">📰 Berita Lainnya</div>
+                    <div class="widget-title flex items-center gap-2">
+                        <svg class="w-4 h-4 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                            <path d="M18 14h-8"/>
+                            <path d="M15 18h-5"/>
+                            <path d="M10 6h8v4h-8V6Z"/>
+                        </svg>
+                        Berita Lainnya
+                    </div>
                     @forelse($relatedArticles as $rel)
                         <a href="{{ route('article.show', $rel->slug) }}" target="_blank" class="related-item">
                             @if($rel->thumbnail)
                                 <img src="{{ Storage::url($rel->thumbnail) }}"
                                      class="related-img" alt="{{ $rel->title }}" loading="lazy">
                             @else
-                                <div class="related-img bg-green-50 flex items-center justify-center text-green-300 text-lg">📰</div>
+                                <div class="related-img bg-green-50 flex items-center justify-center text-green-400">
+                                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                                        <path d="M18 14h-8"/>
+                                        <path d="M15 18h-5"/>
+                                        <path d="M10 6h8v4h-8V6Z"/>
+                                    </svg>
+                                </div>
                             @endif
                             <div class="min-w-0">
                                 <div class="related-item-title">{{ $rel->title }}</div>
@@ -353,7 +379,12 @@
 
                 {{-- School info widget --}}
                 <div class="widget-card">
-                    <div class="widget-title">🏫 Tentang Kami</div>
+                    <div class="widget-title flex items-center gap-2">
+                        <svg class="w-4 h-4 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18M3 7v14M21 7v14M6 11h4M6 15h4M14 11h4M14 15h4M12 3l9 4H3l9-4z"/>
+                        </svg>
+                        Tentang Kami
+                    </div>
                     <div class="p-4 text-center">
                         @php
                             $logoUrl = ($profile && $profile->logo && Str::contains($profile->logo, ['/'])) ? Storage::url($profile->logo) : asset($profile->logo ?? 'logo.png');
@@ -361,8 +392,11 @@
                         <img src="{{ $logoUrl }}" alt="Logo" class="w-16 h-16 mx-auto mb-3 object-contain">
                         <p class="font-black text-sm text-gray-800">{{ config('app.name') }}</p>
                         <a href="{{ route('home') }}"
-                           class="mt-3 inline-block text-xs font-bold text-green-700 border border-green-300 px-4 py-1.5 rounded-full hover:bg-green-50 transition-all">
-                            Kunjungi Website →
+                           class="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-green-700 border border-green-300 px-4 py-1.5 rounded-full hover:bg-green-50 transition-all">
+                            <span>Kunjungi Website</span>
+                            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -388,10 +422,11 @@
     function copyLink() {
         navigator.clipboard.writeText(window.location.href).then(() => {
             const btn = document.getElementById('copy-btn');
-            btn.textContent = '✓ Tersalin!';
+            btn.innerHTML = '<svg class="w-3.5 h-3.5 inline mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Tersalin!';
             setTimeout(() => { btn.innerHTML = '<svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2"/></svg> Salin Link'; }, 2000);
         });
     }
+</script>
 </script>
 
 @endsection

@@ -142,12 +142,20 @@
                 <label for="remember_me" class="text-xs text-gray-500 font-semibold cursor-pointer">Ingat saya</label>
             </div>
 
-            <button type="submit" class="btn-login">
-                Masuk ke Dashboard →
+            <button type="submit" class="btn-login inline-flex items-center justify-center gap-2">
+                <span>Masuk ke Dashboard</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
             </button>
         </form>
 
-        <p class="back-link">← <a href="{{ route('home') }}">Kembali ke Website</a></p>
+        <p class="back-link flex items-center justify-center gap-1.5">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            <a href="{{ route('home') }}">Kembali ke Website</a>
+        </p>
     </div>
 
     <script>

@@ -122,7 +122,7 @@
             <div class="lg:col-span-8 reveal-right">
                 <span class="section-tag">Sambutan</span>
                 <div class="divider-green"></div>
-                <p class="text-green-800/70 leading-relaxed whitespace-pre-line text-sm md:text-base mb-10">
+                <p class="text-green-800/80 leading-relaxed whitespace-pre-line text-sm md:text-base mb-10 text-justify">
                     {{ $profile->principal_message ?? 'Belum ada sambutan.' }}
                 </p>
 
@@ -130,7 +130,13 @@
                     <!-- Visi -->
                     <div class="tilt-card rounded-2xl p-6 border border-green-200 bg-gradient-to-br from-green-50 to-emerald-50 shadow-sm hover:shadow-md transition-shadow">
                         <h4 class="text-base font-black text-green-800 mb-3 flex items-center gap-2">
-                            <span class="w-8 h-8 rounded-xl bg-green-100 flex items-center justify-center text-lg">🎯</span>
+                            <span class="w-8 h-8 rounded-xl bg-green-100 flex items-center justify-center text-green-700">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <circle cx="12" cy="12" r="6"></circle>
+                                    <circle cx="12" cy="12" r="2"></circle>
+                                </svg>
+                            </span>
                             Visi
                         </h4>
                         <div class="w-8 h-0.5 bg-green-400 rounded mb-3"></div>
@@ -139,7 +145,12 @@
                     <!-- Misi -->
                     <div class="tilt-card rounded-2xl p-6 border border-emerald-200 bg-gradient-to-br from-emerald-50 to-teal-50 shadow-sm hover:shadow-md transition-shadow">
                         <h4 class="text-base font-black text-emerald-800 mb-3 flex items-center gap-2">
-                            <span class="w-8 h-8 rounded-xl bg-emerald-100 flex items-center justify-center text-lg">🚀</span>
+                            <span class="w-8 h-8 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                                    <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                                </svg>
+                            </span>
                             Misi
                         </h4>
                         <div class="w-8 h-0.5 bg-emerald-400 rounded mb-3"></div>
@@ -186,9 +197,23 @@
                             <h3 class="text-xl md:text-2xl lg:text-3xl font-black text-white leading-tight group-hover:text-green-300 transition-colors line-clamp-2">
                                 {{ $headline->title }}
                             </h3>
-                            <p class="text-green-200/60 text-xs mt-3 flex items-center gap-3">
-                                <span>📅 {{ $headline->created_at->format('d M Y') }}</span>
-                                <span>👁️ {{ $headline->views }} kali dibaca</span>
+                            <p class="text-green-200/70 text-xs mt-3 flex items-center gap-3">
+                                <span class="flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    {{ $headline->created_at->format('d M Y') }}
+                                </span>
+                                <span class="flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    {{ $headline->views }} kali dibaca
+                                </span>
                             </p>
                         </div>
                         <div class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 backdrop-blur border border-white/30 flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -263,8 +288,11 @@
                     >
                     <!-- Overlay -->
                     <div class="absolute inset-0 bg-gradient-to-t from-green-950/80 via-green-900/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-end pb-5 px-3">
-                        <div class="w-8 h-8 rounded-full bg-white/25 backdrop-blur border border-white/40 flex items-center justify-center text-white text-sm mb-2">
-                            🔍
+                        <div class="w-8 h-8 rounded-full bg-white/25 backdrop-blur border border-white/40 flex items-center justify-center text-white mb-2">
+                            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
                         </div>
                         <p class="text-white font-bold text-xs md:text-sm text-center line-clamp-2">{{ $gallery->title }}</p>
                     </div>
@@ -326,15 +354,29 @@
                     </p>
                     <div class="space-y-5">
                         <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-green-400/15 border border-green-400/20 flex items-center justify-center text-xl flex-shrink-0">📍</div>
+                            <div class="w-10 h-10 rounded-xl bg-green-400/15 border border-green-400/20 flex items-center justify-center text-green-300 flex-shrink-0">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
                             <p class="text-green-100 text-sm leading-relaxed pt-2">{{ $profile->address ?? '-' }}</p>
                         </div>
                         <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-green-400/15 border border-green-400/20 flex items-center justify-center text-xl flex-shrink-0">📞</div>
+                            <div class="w-10 h-10 rounded-xl bg-green-400/15 border border-green-400/20 flex items-center justify-center text-green-300 flex-shrink-0">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
                             <p class="text-green-100 text-sm">{{ $profile->whatsapp ?? '-' }}</p>
                         </div>
                         <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-green-400/15 border border-green-400/20 flex items-center justify-center text-xl flex-shrink-0">✉️</div>
+                            <div class="w-10 h-10 rounded-xl bg-green-400/15 border border-green-400/20 flex items-center justify-center text-green-300 flex-shrink-0">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
                             <p class="text-green-100 text-sm">{{ $profile->email ?? '-' }}</p>
                         </div>
                     </div>

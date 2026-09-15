@@ -235,9 +235,14 @@
                         <span class="w-5 h-0.5 bg-green-400 rounded inline-block"></span>
                         Kontak Kami
                     </h3>
-                    <ul class="text-sm text-green-200/70 space-y-3">
+                    <ul class="text-sm text-green-200/80 space-y-3.5">
                         <li class="flex items-start gap-3">
-                            <span class="text-green-400 mt-0.5">📍</span>
+                            <span class="w-6 h-6 rounded-md bg-green-500/15 border border-green-500/25 flex items-center justify-center text-green-400 mt-0.5 flex-shrink-0">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </span>
                             <div>
                                 {{ $profile->address ?? '-' }}
                                 @if(isset($profile->maps_link) && $profile->maps_link)
@@ -249,8 +254,23 @@
                                 @endif
                             </div>
                         </li>
-                        <li class="flex items-center gap-3"><span class="text-green-400">📞</span>{{ $profile->whatsapp ?? ($profile->phone ?? '-') }}</li>
-                        <li class="flex items-center gap-3"><span class="text-green-400">✉️</span>{{ $profile->email ?? '-' }}</li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-md bg-green-500/15 border border-green-500/25 flex items-center justify-center text-green-400 flex-shrink-0">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </span>
+                            <span>{{ $profile->whatsapp ?? ($profile->phone ?? '-') }}</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-md bg-green-500/15 border border-green-500/25 flex items-center justify-center text-green-400 flex-shrink-0">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </span>
+                            <span>{{ $profile->email ?? '-' }}</span>
+                        </li>
                     </ul>
                 </div>
                 <div class="reveal delay-200">

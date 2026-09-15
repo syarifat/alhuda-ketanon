@@ -24,12 +24,18 @@ class AppServiceProvider extends ServiceProvider
     {
         // Share cached school profile with views to avoid redundant queries to TiDB
         View::composer('*', function ($view) {
-            try {
-                $profile = Cache::rememberForever('school_profile', function () {
-                    return SchoolProfile::first();
-                });
-            } catch (\Throwable $e) {
-                $profile = null;
+            static $profile = null;
+
+            if ($profile === null) {
+                try {
+                    $attributes = Cache::rememberForever('school_profile_attrs', function () {
+                        $item = SchoolProfile::first();
+                        return $item ? $item->getAttributes() : [];
+                    });
+                    $profile = (new SchoolProfile())->forceFill($attributes);
+                } catch (\Throwable $e) {
+                    $profile = SchoolProfile::first() ?? new SchoolProfile();
+                }
             }
 
             $view->with([

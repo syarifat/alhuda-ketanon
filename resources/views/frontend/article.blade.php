@@ -5,15 +5,13 @@
 @section('og_type', 'article')
 @section('og_title', $article->title)
 @section('og_description', \Illuminate\Support\Str::limit(strip_tags($article->content), 160))
-@if($article->thumbnail)
-    @section('og_image', Storage::url($article->thumbnail))
-@endif
+@section('og_image', $article->thumbnail ? Storage::url($article->thumbnail) : '')
 
 @section('schema_json_ld')
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "NewsArticle",
+  "{{ '@context' }}": "https://schema.org",
+  "{{ '@type' }}": "NewsArticle",
   "headline": {!! json_encode($article->title) !!},
   "image": [
     "{{ $article->thumbnail ? Storage::url($article->thumbnail) : '' }}"

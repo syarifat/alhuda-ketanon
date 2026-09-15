@@ -37,7 +37,7 @@ class SchoolProfileController extends Controller
 
         $profile->update($data);
 
-        \Illuminate\Support\Facades\Cache::forget('school_profile');
+        \Illuminate\Support\Facades\Cache::forget('school_profile_attrs');
 
         return redirect()->back()->with('success', 'Profil Sekolah berhasil diperbarui!');
     }

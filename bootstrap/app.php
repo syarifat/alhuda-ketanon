@@ -12,9 +12,7 @@ $app = Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->web(append: [
-            AntiBotScraper::class,
-        ]);
+        $middleware->append(AntiBotScraper::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

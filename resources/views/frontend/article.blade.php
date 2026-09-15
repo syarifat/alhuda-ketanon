@@ -1,5 +1,33 @@
 @extends('frontend.layout')
 
+@section('title', $article->title . ' — ' . ($profile->name ?? 'MI Progresif Al-Huda Ketanon'))
+@section('meta_description', \Illuminate\Support\Str::limit(strip_tags($article->content), 160))
+@section('og_type', 'article')
+@section('og_title', $article->title)
+@section('og_description', \Illuminate\Support\Str::limit(strip_tags($article->content), 160))
+@if($article->thumbnail)
+    @section('og_image', Storage::url($article->thumbnail))
+@endif
+
+@section('schema_json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": {!! json_encode($article->title) !!},
+  "image": [
+    "{{ $article->thumbnail ? Storage::url($article->thumbnail) : '' }}"
+  ],
+  "datePublished": "{{ $article->created_at->toIso8601String() }}",
+  "dateModified": "{{ $article->updated_at->toIso8601String() }}",
+  "author": [{
+      "@type": "Organization",
+      "name": {!! json_encode($profile->name ?? 'MI Progresif Al-Huda Ketanon') !!}
+  }]
+}
+</script>
+@endsection
+
 @section('content')
 
 <style>
@@ -307,14 +335,7 @@
                 {{-- Related articles widget --}}
                 <div class="widget-card sticky top-[72px]">
                     <div class="widget-title">📰 Berita Lainnya</div>
-                    @php
-                        $related = \App\Models\Article::where('id', '!=', $article->id)
-                            ->where('is_published', true)
-                            ->latest()
-                            ->take(6)
-                            ->get();
-                    @endphp
-                    @forelse($related as $rel)
+                    @forelse($relatedArticles as $rel)
                         <a href="{{ route('article.show', $rel->slug) }}" target="_blank" class="related-item">
                             @if($rel->thumbnail)
                                 <img src="{{ Storage::url($rel->thumbnail) }}"

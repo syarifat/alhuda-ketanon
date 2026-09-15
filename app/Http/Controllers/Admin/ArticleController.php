@@ -31,7 +31,7 @@ class ArticleController extends Controller
 
         $path = null;
         if ($request->hasFile('thumbnail')) {
-            $path = $request->file('thumbnail')->store('articles', 'public');
+            $path = $request->file('thumbnail')->store('articles');
         }
 
         Article::create([
@@ -67,9 +67,9 @@ class ArticleController extends Controller
 
         if ($request->hasFile('thumbnail')) {
             if ($article->thumbnail) {
-                Storage::disk('public')->delete($article->thumbnail);
+                Storage::delete($article->thumbnail);
             }
-            $data['thumbnail'] = $request->file('thumbnail')->store('articles', 'public');
+            $data['thumbnail'] = $request->file('thumbnail')->store('articles');
         }
 
         $article->update($data);
@@ -80,7 +80,7 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         if ($article->thumbnail) {
-            Storage::disk('public')->delete($article->thumbnail);
+            Storage::delete($article->thumbnail);
         }
         
         $article->delete();

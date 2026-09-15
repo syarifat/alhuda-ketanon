@@ -7,7 +7,6 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
         @php
-            $appProfile = \App\Models\SchoolProfile::first();
             $headLogoUrl = ($appProfile && $appProfile->logo && \Illuminate\Support\Str::contains($appProfile->logo, ['/'])) ? Storage::url($appProfile->logo) : asset($appProfile->logo ?? 'logo.png');
         @endphp
         <link rel="icon" href="{{ $headLogoUrl }}" type="image/png">

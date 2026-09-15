@@ -28,7 +28,7 @@ class GalleryController extends Controller
             'description' => 'nullable',
         ]);
 
-        $path = $request->file('image')->store('galleries', 'public');
+        $path = $request->file('image')->store('galleries');
 
         Gallery::create([
             'title' => $request->title,
@@ -54,9 +54,9 @@ class GalleryController extends Controller
 
         if ($request->hasFile('image')) {
             if ($gallery->image_path) {
-                Storage::disk('public')->delete($gallery->image_path);
+                Storage::delete($gallery->image_path);
             }
-            $gallery->image_path = $request->file('image')->store('galleries', 'public');
+            $gallery->image_path = $request->file('image')->store('galleries');
         }
 
         $gallery->title = $request->title;
@@ -69,7 +69,7 @@ class GalleryController extends Controller
     public function destroy(Gallery $gallery)
     {
         if ($gallery->image_path) {
-            Storage::disk('public')->delete($gallery->image_path);
+            Storage::delete($gallery->image_path);
         }
         $gallery->delete();
         return redirect()->route('admin.galleries.index')->with('success', 'Foto galeri telah dihapus.');

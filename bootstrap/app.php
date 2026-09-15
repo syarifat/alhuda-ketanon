@@ -3,16 +3,25 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use App\Http\Middleware\AntiBotScraper;
 
-return Application::configure(basePath: dirname(__DIR__))
+$app = Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->web(append: [
+            AntiBotScraper::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
+
+if (!empty($_ENV['LARAVEL_STORAGE_PATH']) && is_dir($_ENV['LARAVEL_STORAGE_PATH'])) {
+    $app->useStoragePath($_ENV['LARAVEL_STORAGE_PATH']);
+}
+
+return $app;

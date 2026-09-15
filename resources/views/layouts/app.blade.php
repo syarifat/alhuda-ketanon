@@ -6,7 +6,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Admin Panel') }} — CMS</title>
     @php
-        $appProfile = \App\Models\SchoolProfile::first();
         $headLogoUrl = ($appProfile && $appProfile->logo && \Illuminate\Support\Str::contains($appProfile->logo, ['/'])) ? Storage::url($appProfile->logo) : asset($appProfile->logo ?? 'logo.png');
     @endphp
     <link rel="icon" href="{{ $headLogoUrl }}" type="image/png">
@@ -192,7 +191,6 @@
         <div class="sidebar-brand">
             <div class="sidebar-brand-icon overflow-hidden p-0">
                 @php
-                    $appProfile = \App\Models\SchoolProfile::first();
                     $logoUrl = ($appProfile && $appProfile->logo && Str::contains($appProfile->logo, ['/'])) ? Storage::url($appProfile->logo) : asset($appProfile->logo ?? 'logo.png');
                 @endphp
                 <img src="{{ $logoUrl }}" alt="Logo" class="w-full h-full object-cover">

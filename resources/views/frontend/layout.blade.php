@@ -3,11 +3,34 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $profile->name ?? 'Profil Sekolah' }}</title>
-    <meta name="description" content="{{ $profile->slogan ?? 'Website resmi sekolah kami' }}">
+    <title>@yield('title', ($profile->name ?? 'MI Progresif Al-Huda Ketanon'))</title>
+    <meta name="description" content="@yield('meta_description', ($profile->slogan ?? 'Website resmi MI Progresif Al-Huda Ketanon Tulungagung'))">
+    <link rel="canonical" href="{{ url()->current() }}">
+    
+    @if(env('GOOGLE_SITE_VERIFICATION'))
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="{{ env('GOOGLE_SITE_VERIFICATION') }}">
+    @endif
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('og_title', ($profile->name ?? 'MI Progresif Al-Huda Ketanon'))">
+    <meta property="og:description" content="@yield('og_description', ($profile->slogan ?? 'Website resmi MI Progresif Al-Huda Ketanon'))">
     @php
-        $logoUrl = (isset($profile) && $profile->logo && \Illuminate\Support\Str::contains($profile->logo, ['/'])) ? Storage::url($profile->logo) : asset($profile->logo ?? 'logo.png');
+        $logoUrl = ($profile && $profile->logo && \Illuminate\Support\Str::contains($profile->logo, ['/'])) ? Storage::url($profile->logo) : asset($profile->logo ?? 'logo.png');
     @endphp
+    <meta property="og:image" content="@yield('og_image', $logoUrl)">
+    <meta property="og:site_name" content="{{ $profile->name ?? 'MI Progresif Al-Huda Ketanon' }}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('og_title', ($profile->name ?? 'MI Progresif Al-Huda Ketanon'))">
+    <meta name="twitter:description" content="@yield('og_description', ($profile->slogan ?? 'Website resmi MI Progresif Al-Huda Ketanon'))">
+    <meta name="twitter:image" content="@yield('og_image', $logoUrl)">
+
+    @yield('schema_json_ld')
+
     <link rel="icon" href="{{ $logoUrl }}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">

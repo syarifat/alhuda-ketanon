@@ -353,6 +353,10 @@
 
                 <form action="{{ route('send.message') }}" method="POST" class="space-y-5">
                     @csrf
+                    {{-- Honeypot Anti-Spambot --}}
+                    <div style="display:none;" aria-hidden="true">
+                        <input type="text" name="website_hp_check" tabindex="-1" autocomplete="off">
+                    </div>
                     <div>
                         <label class="block text-xs font-bold text-green-700 uppercase tracking-wider mb-2" for="name">Nama Lengkap</label>
                         <input

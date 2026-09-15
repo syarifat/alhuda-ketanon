@@ -23,19 +23,21 @@ class SchoolProfileController extends Controller
 
         if ($request->hasFile('logo')) {
             if ($profile->logo && !in_array($profile->logo, ['logo.png', 'logo.jpg'])) {
-                Storage::disk('public')->delete($profile->logo);
+                Storage::delete($profile->logo);
             }
-            $data['logo'] = $request->file('logo')->store('profiles', 'public');
+            $data['logo'] = $request->file('logo')->store('profiles');
         }
 
         if ($request->hasFile('principal_photo')) {
             if ($profile->principal_photo && !in_array($profile->principal_photo, ['kepsek.jpg', 'kepsek.png'])) {
-                Storage::disk('public')->delete($profile->principal_photo);
+                Storage::delete($profile->principal_photo);
             }
-            $data['principal_photo'] = $request->file('principal_photo')->store('profiles', 'public');
+            $data['principal_photo'] = $request->file('principal_photo')->store('profiles');
         }
 
         $profile->update($data);
+
+        \Illuminate\Support\Facades\Cache::forget('school_profile');
 
         return redirect()->back()->with('success', 'Profil Sekolah berhasil diperbarui!');
     }

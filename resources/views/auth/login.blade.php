@@ -6,7 +6,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Admin') }} — Login</title>
     @php
-        $appProfile = \App\Models\SchoolProfile::first();
         $headLogoUrl = ($appProfile && $appProfile->logo && \Illuminate\Support\Str::contains($appProfile->logo, ['/'])) ? Storage::url($appProfile->logo) : asset($appProfile->logo ?? 'logo.png');
     @endphp
     <link rel="icon" href="{{ $headLogoUrl }}" type="image/png">
@@ -90,7 +89,6 @@
     <div class="login-card">
         <div class="login-logo">
             @php
-                $appProfile = \App\Models\SchoolProfile::first();
                 $logoUrl = ($appProfile && $appProfile->logo && Str::contains($appProfile->logo, ['/'])) ? Storage::url($appProfile->logo) : asset($appProfile->logo ?? 'logo.png');
             @endphp
             <img src="{{ $logoUrl }}" alt="Logo Sekolah" class="w-full h-full object-contain p-1">

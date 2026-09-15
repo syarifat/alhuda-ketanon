@@ -19,6 +19,20 @@ Route::post('/kirim-pesan', [FrontController::class, 'storeMessage'])->name('sen
 Route::get('/berita', [FrontController::class, 'newsIndex'])->name('news.index');
 Route::get('/berita/{slug}', [FrontController::class, 'showArticle'])->name('article.show');
 
+// Dynamic cached XML Sitemap for Google Search Console
+Route::get('/sitemap.xml', function () {
+    $xml = \Illuminate\Support\Facades\Cache::remember('sitemap_xml', 3600, function () {
+        $articles = \App\Models\Article::where('is_published', true)
+            ->select('slug', 'updated_at')
+            ->latest('updated_at')
+            ->get();
+
+        return view('frontend.sitemap', compact('articles'))->render();
+    });
+
+    return response($xml, 200)->header('Content-Type', 'text/xml');
+})->name('sitemap');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

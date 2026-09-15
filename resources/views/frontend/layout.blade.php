@@ -258,11 +258,49 @@
                         <span class="w-5 h-0.5 bg-green-400 rounded inline-block"></span>
                         Media Sosial
                     </h3>
-                    <div class="flex flex-col gap-3 text-sm">
-                        @if(isset($profile->instagram)) <a href="{{ $profile->instagram }}" target="_blank" class="text-green-200/70 hover:text-green-300 transition-colors flex items-center gap-2"><span>📸</span> Instagram</a> @endif
-                        @if(isset($profile->facebook))  <a href="{{ $profile->facebook }}"  target="_blank" class="text-green-200/70 hover:text-green-300 transition-colors flex items-center gap-2"><span>📘</span> Facebook</a>  @endif
-                        @if(isset($profile->youtube))   <a href="{{ $profile->youtube }}"   target="_blank" class="text-green-200/70 hover:text-green-300 transition-colors flex items-center gap-2"><span>▶️</span> YouTube</a>   @endif
-                        @if(isset($profile->tiktok))    <a href="{{ $profile->tiktok }}"    target="_blank" class="text-green-200/70 hover:text-green-300 transition-colors flex items-center gap-2"><span>🎵</span> TikTok</a>    @endif
+                    <div class="flex flex-col gap-2.5 text-sm">
+                        @if(isset($profile->instagram) && $profile->instagram)
+                            <a href="{{ $profile->instagram }}" target="_blank" class="group text-green-200/80 hover:text-white transition-colors flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-lg bg-pink-500/15 border border-pink-500/25 flex items-center justify-center text-pink-400 group-hover:bg-gradient-to-tr group-hover:from-amber-500 group-hover:via-pink-500 group-hover:to-purple-600 group-hover:text-white transition-all">
+                                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>
+                                </span>
+                                <span class="font-medium">Instagram</span>
+                            </a>
+                        @endif
+                        @if(isset($profile->facebook) && $profile->facebook)
+                            <a href="{{ $profile->facebook }}" target="_blank" class="group text-green-200/80 hover:text-white transition-colors flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-lg bg-blue-500/15 border border-blue-500/25 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                    </svg>
+                                </span>
+                                <span class="font-medium">Facebook</span>
+                            </a>
+                        @endif
+                        @if(isset($profile->youtube) && $profile->youtube)
+                            <a href="{{ $profile->youtube }}" target="_blank" class="group text-green-200/80 hover:text-white transition-colors flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-lg bg-red-500/15 border border-red-500/25 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all">
+                                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    </svg>
+                                </span>
+                                <span class="font-medium">YouTube</span>
+                            </a>
+                        @endif
+                        @if(isset($profile->tiktok) && $profile->tiktok)
+                            <a href="{{ $profile->tiktok }}" target="_blank" class="group text-green-200/80 hover:text-white transition-colors flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-lg bg-cyan-400/15 border border-cyan-400/25 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all">
+                                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.77 1.81-.03 3.32-1.52 3.42-3.33.05-3.35.03-6.7.04-10.05.01-2.92.01-5.84-.01-8.75z"/>
+                                    </svg>
+                                </span>
+                                <span class="font-medium">TikTok</span>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -272,9 +310,15 @@
                 </div>
                 <div class="flex items-center gap-2">
                     <span>Powered by</span>
-                    <a href="https://sat-project.me" target="_blank" class="hover:opacity-80 transition-opacity flex items-center gap-2" title="SAT Project">
-                        <img src="{{ asset('logosatcolor.svg') }}" alt="SAT Project Logo" class="h-4 md:h-5">
-                        <span class="font-bold text-green-300 hover:text-white transition-colors">SAT Project</span>
+                    <a href="https://sat-project.me" target="_blank" class="hover:opacity-90 transition-all flex items-center gap-2 group" title="SAT Project">
+                        <svg class="h-4 md:h-5 w-auto aspect-square rounded" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="512" height="512" rx="120" fill="#2563eb"/>
+                            <path d="M352 144h-96c-44.18 0-80 35.82-80 80 0 44.18 35.82 80 80 80h64c17.67 0 32 14.33 32 32 0 17.67-14.33 32-32 32H160" stroke="#ffffff" stroke-width="64" stroke-linecap="round" fill="none"/>
+                            <path d="M160 368h96c44.18 0 80-35.82 80-80 0-44.18-35.82-80-80-80h-64c-17.67 0-32-14.33-32-32 0-17.67 14.33-32 32-32h160" stroke="#ffffff" stroke-width="64" stroke-linecap="round" fill="none"/>
+                            <circle cx="360" cy="144" r="32" fill="#ffffff"/>
+                            <circle cx="152" cy="368" r="32" fill="#ffffff"/>
+                        </svg>
+                        <span class="font-bold text-green-300 group-hover:text-white transition-colors">SAT Project</span>
                     </a>
                 </div>
             </div>

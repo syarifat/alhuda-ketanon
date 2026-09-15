@@ -17,7 +17,7 @@
       }
     },
     {
-      "src": "/(favicon\\.ico|robots\\.txt)",
+      "src": "/(.*\\.(?:ico|png|jpg|jpeg|svg|webp|gif|txt|woff|woff2|ttf|eot))",
       "dest": "/public/$1"
     },
     {
